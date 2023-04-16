@@ -14,11 +14,11 @@ const SafeArea = styled(SafeAreaView)`
 `
 
 const SearchBarContainer = styled.View`
-    padding: ${props => props.theme.space[2]};
+    padding: ${props => props.theme.space[3]};
 `
 
 const SearchingBar = styled(Searchbar)`
-    border-radius: ${props => props.theme.space[0]};
+    border-radius: ${props => props.theme.space[2]};
 `
 const TextContainer = styled.View`
     flex: 1;
