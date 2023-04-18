@@ -1,38 +1,29 @@
 import React from "react";
-import styled from "styled-components";
-import { StyleSheet, Text, View, SafeAreaView, Platform, StatusBar } from 'react-native';
-
-// React native-paper
-import { Searchbar } from 'react-native-paper';
+import { FlatList } from "react-native";
 
 // components
-import RestaurantInfoCard from "../components/restaurant-info-card.component";
+import {RestaurantInfoCard} from "../components/restaurant-info-card.component";
 
-const SafeArea = styled(SafeAreaView)`
-    flex: 1;
-    ${StatusBar.currentHeight && `padding-top: ${StatusBar.currentHeight}px`};
-`
+import {
+    SafeArea,
+    SearchBarContainer,
+    SearchingBar,
+} from './restaurants-screen.styles';
 
-const SearchBarContainer = styled.View`
-    padding: ${props => props.theme.space[3]};
-`
-
-const SearchingBar = styled(Searchbar)`
-    border-radius: ${props => props.theme.space[2]};
-`
-const TextContainer = styled.View`
-    flex: 1;
-    padding: ${props => props.theme.space[2]};
-`
 const RestaurantsScreen = () => {
     return (
         <SafeArea>
             <SearchBarContainer>
                 <SearchingBar/>
             </SearchBarContainer>
-            <TextContainer>
-                <RestaurantInfoCard />
-            </TextContainer>
+            <FlatList 
+                data={[{name: 1}, {name: 2},{name: 3}, {name: 4},{name: 5}, {name: 6}]}
+                renderItem={() => <RestaurantInfoCard />}
+                keyExtractor={item => item.name}
+                // these styled will apply to the holistic content inside the container.  / holistic => całościowy
+                contentContainerStyle={{padding: 8}}
+            />
+            
         </SafeArea>
     )
 }
