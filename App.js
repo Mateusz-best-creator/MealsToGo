@@ -20,6 +20,9 @@ import { SafeArea } from './src/features/restaurants/screens/restaurants-screen.
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 
+// restaurants context
+import { RestaurantProvider } from './src/services/restaurants/restaurants.context';
+
 function SettingsScreen() {
   return <SafeArea>
     <Text>Settings!!!!</Text>
@@ -46,37 +49,40 @@ const App = () => {
   if(!oswaldLoaded || !latoLoaded) return;
 
   return (
-    <>{/* Now every styled component will get theme in his props */}
+    <>
+    {/* Now every styled component will get theme in his props */}
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color }) => {
-            
-            const { name } = route;
-            
-            switch(name) {
-              case 'Restaurants':
-                focused ? color = 'tomato' : color = 'black';
-                return <Ionicons name="restaurant-outline" size={24} color={color} />
-              case 'Map':
-                return <Feather name="map" size={24} color={color} />
-              case 'Settings':
-                return <Feather name="settings" size={24} color={color} />
-              default:
-                return;
-            }
-          },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'gray',
-          headerShown: false,
-        })}
-      >
-                        
-            <Tab.Screen  name="Restaurants" component={RestaurantsScreen} />
-            <Tab.Screen name="Map" component={MapScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-          </Tab.Navigator>
-        </NavigationContainer>
+        <RestaurantProvider>
+          <NavigationContainer>
+            <Tab.Navigator screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color }) => {
+              
+              const { name } = route;
+              
+              switch(name) {
+                case 'Restaurants':
+                  focused ? color = 'tomato' : color = 'black';
+                  return <Ionicons name="restaurant-outline" size={24} color={color} />
+                case 'Map':
+                  return <Feather name="map" size={24} color={color} />
+                case 'Settings':
+                  return <Feather name="settings" size={24} color={color} />
+                default:
+                  return;
+              }
+            },
+            tabBarActiveTintColor: 'tomato',
+            tabBarInactiveTintColor: 'gray',
+            headerShown: false,
+          })}
+        >
+                          
+              <Tab.Screen  name="Restaurants" component={RestaurantsScreen} />
+              <Tab.Screen name="Map" component={MapScreen} />
+              <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </RestaurantProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
