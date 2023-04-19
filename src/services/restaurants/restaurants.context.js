@@ -33,9 +33,6 @@ export const RestaurantProvider = ({children}) => {
         retrieveRestaurants();
     }, [])
 
-    useEffect(() => {
-        setRestaurantsData(restaurantsData);
-    }, [])
 
     value = {restaurantsData, isLoading, error};
 

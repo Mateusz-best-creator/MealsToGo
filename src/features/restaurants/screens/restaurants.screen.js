@@ -11,26 +11,40 @@ import {
     SafeArea,
     SearchBarContainer,
     SearchingBar,
+    LoaderContainer
 } from './restaurants-screen.styles';
+
+// loader
+import Loader from "../../../components/activityIndicator/activity-indicator.component";
 
 const RestaurantsScreen = () => {
 
-    const {restaurantsData, isLoading, error} = useContext(RestaurantsContext)
+    const {restaurantsData, isLoading, error} = useContext(RestaurantsContext);
 
     return (
         <SafeArea>
             <SearchBarContainer>
                 <SearchingBar/>
             </SearchBarContainer>
-            <FlatList 
-                data={restaurantsData}
-                renderItem={({item}) => {
-                    return <RestaurantInfoCard restaurant={item} />
-                }}
-                keyExtractor={item => item.name}
-                // these styled will apply to the holistic content inside the container.  / holistic => całościowy
-                contentContainerStyle={{padding: 8}}
-            />
+            {
+                !isLoading
+                ? (
+                    <FlatList 
+                        data={restaurantsData}
+                        renderItem={({item}) => {
+                            return <RestaurantInfoCard restaurant={item} />
+                        }}
+                        keyExtractor={item => item.name}
+                        // these styled will apply to the holistic content inside the container.  / holistic => całościowy
+                        contentContainerStyle={{padding: 8}}
+                    />
+                )
+                : <LoaderContainer>
+                    <Loader />
+                </LoaderContainer>
+                
+            }
+            
             
         </SafeArea>
     )

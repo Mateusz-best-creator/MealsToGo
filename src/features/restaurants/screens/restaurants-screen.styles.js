@@ -17,3 +17,9 @@ export const SearchingBar = styled(Searchbar)`
     border-radius: ${props => props.theme.space[2]};
     margin-bottom: ${props => props.theme.space[3]};
 `
+
+export const LoaderContainer = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`
