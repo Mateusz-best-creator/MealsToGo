@@ -9,16 +9,23 @@ import {
 
 const Search = () => {
 
-    const { keyword, onSearch } = useContext(LocationContext);
+    const { keyword, onSearchFunction } = useContext(LocationContext);
     const [searchKeyword, setSearchKeyword] = useState(keyword);
+
+    // useEffect(() => {
+    //     setSearchKeyword(searchKeyword.trim());
+    //     onSearchFunction(searchKeyword);
+    // }, [])
 
     return (
         <SearchBarContainer>
             <SearchingBar
+                elevation={4}
                 placeholder="Search for a location"
                 value={searchKeyword}
                 onSubmitEditing={() => {
-                    onSearch(searchKeyword);
+                    const wordWithoutSpaces = searchKeyword.trim()
+                    onSearchFunction(wordWithoutSpaces);
                 }}
                 onChangeText={(text) => {
                     setSearchKeyword(text);   

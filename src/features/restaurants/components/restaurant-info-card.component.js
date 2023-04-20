@@ -1,5 +1,4 @@
 import React from "react";
-import { Image, View } from "react-native";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 
@@ -27,6 +26,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     isOpenNow = true,
     rating = 4,
     isTemporarilyClosed = true,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.round(rating)));
@@ -39,7 +39,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
         <Section>
           <Rating>
             {ratingArray.map((_, index) => (
-                <Icon key={index} source={require('../../../../assets/star2.jpg')} />
+                <Icon key={`star-${placeId}-${index}`} source={require('../../../../assets/star2.jpg')} />
             ))}
           </Rating>
           <SectionEnd>
