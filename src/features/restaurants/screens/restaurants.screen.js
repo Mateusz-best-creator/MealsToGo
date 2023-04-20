@@ -9,13 +9,13 @@ import {RestaurantsContext} from '../../../services/restaurants/restaurants.cont
 
 import {
     SafeArea,
-    SearchBarContainer,
-    SearchingBar,
     LoaderContainer
 } from './restaurants-screen.styles';
 
 // loader
 import Loader from "../../../components/activityIndicator/activity-indicator.component";
+// search component
+import Search from "../components/search.component";
 
 const RestaurantsScreen = () => {
 
@@ -23,9 +23,7 @@ const RestaurantsScreen = () => {
 
     return (
         <SafeArea>
-            <SearchBarContainer>
-                <SearchingBar/>
-            </SearchBarContainer>
+            <Search />
             {
                 !isLoading
                 ? (
