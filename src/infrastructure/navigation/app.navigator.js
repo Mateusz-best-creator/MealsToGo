@@ -1,5 +1,7 @@
 import React from "react";
 
+import { SafeArea, Text } from "../../features/restaurants/screens/restaurants-screen.styles";
+
 // expo icons
 import { Ionicons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
@@ -10,7 +12,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // restaurants separate navigator
 import { RestaurantsNavigator } from "./restaurants.navigator";
-import RestaurantsScreen from '../../features/restaurants/screens/restaurants.screen';
 
 const Tab = createBottomTabNavigator();
 

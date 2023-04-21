@@ -2,24 +2,31 @@ import React from "react";
 
 import { Text } from "react-native";
 
-import { createStackNavigator } from "@react-navigation/stack";
+import { 
+    createStackNavigator,
+    TransitionPresets,
+} from "@react-navigation/stack";
 
 // restaurants screen
 import RestaurantsScreen from '../../features/restaurants/screens/restaurants.screen';
+// restaurants details screen
+import { RestaurantDetails } from "../../features/restaurants/screens/restaurant-details.screen";
 
 const RestaurantStack = createStackNavigator();
 
 export const RestaurantsNavigator = () => {
     return (
-        <RestaurantStack.Navigator headerMode="none">
+        <RestaurantStack.Navigator headerMode="none" screenOptions={{
+            ...TransitionPresets.ModalPresentationIOS
+        }}>
             <RestaurantStack.Screen 
-                name="Restaurants" 
-                // everu component that are injected inside .Navigator have access to navigation property!!!
+                name="Restaurants"  
+                // everu component that is inside RestaurantStack.Navigator have access to navigation property and others...(DOCS)
                 component={RestaurantsScreen} 
             />
             <RestaurantStack.Screen 
                 name="RestaurantDetail" 
-                component={() => <Text>Restaurant Detail</Text>} 
+                component={RestaurantDetails} 
             />
         </RestaurantStack.Navigator>
     )

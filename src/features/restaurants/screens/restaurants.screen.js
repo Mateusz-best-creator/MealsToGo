@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import { FlatList, Pressable } from "react-native";
+import { FlatList, TouchableOpacity } from "react-native";
 
 // components
 import {RestaurantInfoCard} from "../components/restaurant-info-card.component";
@@ -20,7 +20,7 @@ import Search from "../components/search.component";
 const RestaurantsScreen = ({ navigation }) => {
 
     const { restaurantsData, isLoading } = useContext(RestaurantsContext);
-    console.log(navigation);
+    
     return (
         <SafeArea>
             <Search />
@@ -30,14 +30,13 @@ const RestaurantsScreen = ({ navigation }) => {
                     <FlatList 
                         data={restaurantsData}
                         renderItem={({item}) => {
+                            // console.log("item : ", item.photos);
                             return (
                                 // .navigate is a prop from navigation
-                                <Pressable onPress={() => navigation.navigate("RestaurantDetail")}>
+                                <TouchableOpacity  onPress={() => navigation.navigate("RestaurantDetail", {restaurantData: item, photoUrl: item.photos[0]})}>
                                     <RestaurantInfoCard restaurant={item} />
-                                </Pressable>   
+                                </TouchableOpacity >   
                             )
-                            
-                            
                         }}
                         keyExtractor={item => item.name}
                         // these styled will apply to the holistic content inside the container.  / holistic => całościowy
@@ -49,8 +48,6 @@ const RestaurantsScreen = ({ navigation }) => {
                 </LoaderContainer>
                 
             }
-            
-            
         </SafeArea>
     )
 }
