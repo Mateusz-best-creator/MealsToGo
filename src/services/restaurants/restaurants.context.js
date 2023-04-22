@@ -15,7 +15,7 @@ export const RestaurantProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
     const { location} = useContext(LocationContext);
-    
+    console.log("location : ", location)
     const retrieveRestaurants = (loc) => {
         setIsLoading(true);
         setRestaurantsData([]);

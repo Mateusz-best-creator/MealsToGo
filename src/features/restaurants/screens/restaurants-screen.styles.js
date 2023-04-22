@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { StyleSheet, Text, View, SafeAreaView, StatusBar } from 'react-native';
+import styled from "styled-components/native";
+import { SafeAreaView, StatusBar } from 'react-native';
 
 // React native-paper
 import { Searchbar } from 'react-native-paper';

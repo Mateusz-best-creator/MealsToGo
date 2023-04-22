@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 
 import { LocationContext } from "../../../services/location/location.context";
 
@@ -12,10 +12,9 @@ const Search = () => {
     const { keyword, onSearchFunction } = useContext(LocationContext);
     const [searchKeyword, setSearchKeyword] = useState(keyword);
 
-    // useEffect(() => {
-    //     setSearchKeyword(searchKeyword.trim());
-    //     onSearchFunction(searchKeyword);
-    // }, [])
+    useEffect(() => {
+        setSearchKeyword(keyword);
+    }, [keyword])
 
     return (
         <SearchBarContainer>

@@ -14,7 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RestaurantsNavigator } from "./restaurants.navigator";
 
 // map and settings screens
-import MapScreen from "../../features/restaurants/screens/map-screen.screen";
+import MapScreen from "../../features/map/screens/map-screen.screen";
 
 const Tab = createBottomTabNavigator();
 
