@@ -1,6 +1,6 @@
 import React from "react";
-
-import { SafeArea, Text } from "../../features/restaurants/screens/restaurants-screen.styles";
+import {Text} from 'react-native';
+import { SafeArea } from "../../features/restaurants/screens/restaurants-screen.styles";
 
 // expo icons
 import { Ionicons } from '@expo/vector-icons';
@@ -13,6 +13,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // restaurants separate navigator
 import { RestaurantsNavigator } from "./restaurants.navigator";
 
+// map and settings screens
+import MapScreen from "../../features/restaurants/screens/map-screen.screen";
+
 const Tab = createBottomTabNavigator();
 
 function SettingsScreen() {
@@ -20,12 +23,6 @@ function SettingsScreen() {
       <Text>Settings!!!!</Text>
     </SafeArea>
   }
-  
-function MapScreen() {
-    return <SafeArea>
-        <Text>Map!!!!</Text>
-    </SafeArea>
-}
 
 export const AppNavigator = () => {
     return (

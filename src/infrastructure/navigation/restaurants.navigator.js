@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text } from "react-native";
+import { Platform } from "react-native";
 
 import { 
     createStackNavigator,
@@ -10,14 +10,19 @@ import {
 // restaurants screen
 import RestaurantsScreen from '../../features/restaurants/screens/restaurants.screen';
 // restaurants details screen
-import { RestaurantDetails } from "../../features/restaurants/screens/restaurant-details.screen";
+import { RestaurantDetailsScreen } from "../../features/restaurants/screens/restaurant-details.screen";
 
 const RestaurantStack = createStackNavigator();
 
 export const RestaurantsNavigator = () => {
+
+    const transitionProperty = Platform.OS === 'android' ? 'FadeFromBottomAndroid'  : 'ModalPresentationIOS';
+
     return (
-        <RestaurantStack.Navigator headerMode="none" screenOptions={{
-            ...TransitionPresets.ModalPresentationIOS
+        <RestaurantStack.Navigator screenOptions={{
+            // this property allows us to make pup up our screen from the bottom
+            ...TransitionPresets.transitionProperty,
+            headerShown: false,
         }}>
             <RestaurantStack.Screen 
                 name="Restaurants"  
@@ -26,7 +31,7 @@ export const RestaurantsNavigator = () => {
             />
             <RestaurantStack.Screen 
                 name="RestaurantDetail" 
-                component={RestaurantDetails} 
+                component={RestaurantDetailsScreen} 
             />
         </RestaurantStack.Navigator>
     )

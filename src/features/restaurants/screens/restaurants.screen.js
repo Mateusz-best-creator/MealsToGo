@@ -30,7 +30,6 @@ const RestaurantsScreen = ({ navigation }) => {
                     <FlatList 
                         data={restaurantsData}
                         renderItem={({item}) => {
-                            // console.log("item : ", item.photos);
                             return (
                                 // .navigate is a prop from navigation
                                 <TouchableOpacity  onPress={() => navigation.navigate("RestaurantDetail", {restaurantData: item, photoUrl: item.photos[0]})}>

@@ -16,7 +16,7 @@ import {
 } from './restaurant-info.card.styled';
 
 export const RestaurantInfoCard = ({ restaurant = {}, photoUrl }) => {
-  // console.log("URL!!! :", photoUrl)
+  
   const {
     name = "Some Restaurant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
@@ -36,7 +36,7 @@ export const RestaurantInfoCard = ({ restaurant = {}, photoUrl }) => {
   }
 
   return (
-    <RestaurantCard elevation={5}>
+    <RestaurantCard>
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
@@ -55,7 +55,7 @@ export const RestaurantInfoCard = ({ restaurant = {}, photoUrl }) => {
             {
               !isTemporarilyClosed && (
                 <Spacer position="left" size="large">
-                  {isOpenNow && <Icon source={require('../../../../assets/open.png')} />}
+                  {<Icon source={require('../../../../assets/open.png')} />}
                 </ Spacer>
               )
             }
