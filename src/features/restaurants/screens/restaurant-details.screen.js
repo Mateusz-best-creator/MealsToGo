@@ -10,7 +10,7 @@ import { List } from "react-native-paper";
 import { SafeArea } from "./restaurants-screen.styles";
 
 export const RestaurantDetailsScreen = ({ route: {params} }) => {
-    
+
     const {photoUrl, restaurantData} = params;
     const [expandedBreakfast, setExpandedBreakfast] = useState(false);
     const [expandedLunch, setExpandedLunch] = useState(false);

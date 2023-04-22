@@ -11,8 +11,8 @@ import {Search} from '../components/map-search.component';
 
 // map callout component
 import MapCallout from '../components/map-callout.component';
-
-const MapScreen = () => {
+// everytime we work with react-native-navigation we have access to navigation property(and others)
+const MapScreen = ({ navigation }) => {
 
   const {location} = useContext(LocationContext);
   const {restaurantsData} = useContext(RestaurantsContext);
@@ -44,13 +44,12 @@ const MapScreen = () => {
             return (
               <Marker
                 key={restaurant.name}
-                title={restaurant.name}
                 coordinate={{
                   latitude: restaurant.geometry.location.lat,
                   longitude: restaurant.geometry.location.lng,
                 }}
               >
-                <Callout>
+                <Callout onPress={() => navigation.navigate('RestaurantDetail', {restaurantData: restaurant, photoUrl: restaurant.photos[0]})}>
                   <MapCallout restaurant={restaurant} />
                 </Callout>
               </Marker> 
