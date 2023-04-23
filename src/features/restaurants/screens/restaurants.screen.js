@@ -33,7 +33,7 @@ const RestaurantsScreen = ({ navigation }) => {
                 onFavouritesToggle={() => setIsToggled(!isToggled)}    
             />
             {
-                isToggled && <FavouritesBar favourites={favourites} />
+                isToggled && <FavouritesBar onNavigate={navigation.navigate} favourites={favourites} />
             }
             {
                 !isLoading

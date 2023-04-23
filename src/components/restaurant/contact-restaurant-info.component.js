@@ -28,7 +28,7 @@ const CompactRestaurantInfo = ({ restaurant, isMap }) => {
     // if we have errors(more likely on android) while trying displaying an image in map component we should use CompactWebView
     const ImageContainer = (isAndroid && isMap) ? CompactWebview : CompactImage;
     return (
-        <TouchableOpacity>
+        <>
             <Item>
                 <ImageContainer style={{height: 85, width: 85,}} source={{
                     uri: restaurant.photos[0],
@@ -37,7 +37,7 @@ const CompactRestaurantInfo = ({ restaurant, isMap }) => {
                     {restaurant.name}
                 </Text>
             </Item>
-        </TouchableOpacity>
+        </>
     )   
 }
 
