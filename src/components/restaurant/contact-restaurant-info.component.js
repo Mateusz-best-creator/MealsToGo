@@ -23,15 +23,14 @@ const Item = styled.View`
 `
 const isAndroid = Platform.OS === 'android';
 
-const CompactRestaurantInfo = ({ restaurant }) => {
+const CompactRestaurantInfo = ({ restaurant, isMap }) => {
     // if we work with map callout we have to specify our image to avoid errors
     // if we have errors(more likely on android) while trying displaying an image in map component we should use CompactWebView
-    const ImageContainer = isAndroid ? CompactWebview : CompactImage;
-
+    const ImageContainer = (isAndroid && isMap) ? CompactWebview : CompactImage;
     return (
         <TouchableOpacity>
             <Item>
-                <ImageContainer source={{
+                <ImageContainer style={{height: 85, width: 85,}} source={{
                     uri: restaurant.photos[0],
                 }} />
                 <Text center variant='caption'>

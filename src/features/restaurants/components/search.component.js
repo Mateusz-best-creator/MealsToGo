@@ -7,7 +7,7 @@ import {
     SearchingBar,
 } from '../screens/restaurants-screen.styles';
 
-const Search = () => {
+const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
 
     const { keyword, onSearchFunction } = useContext(LocationContext);
     const [searchKeyword, setSearchKeyword] = useState(keyword);
@@ -19,6 +19,8 @@ const Search = () => {
     return (
         <SearchBarContainer>
             <SearchingBar
+                icon={isFavouritesToggled ? "heart" : "heart-outline"}
+                onIconPress={onFavouritesToggle}
                 elevation={4}
                 placeholder="Search for a location"
                 value={searchKeyword}

@@ -27,7 +27,7 @@ const MapScreen = ({ navigation }) => {
     const latDelta = northeastLat - southwestLat;
     setLatDelta(latDelta);
   }, [location, viewport])
-
+  
   return (
     <>
       <Search />

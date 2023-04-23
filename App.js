@@ -12,6 +12,8 @@ import {useFonts as useLato, Lato_400Regular,} from '@expo-google-fonts/lato';
 import { RestaurantProvider } from './src/services/restaurants/restaurants.context';
 // location context
 import { LocationContextProvider } from './src/services/location/location.context';
+// favourites context
+import { FavouritesContextProvider } from './src/services/favourites/favourites.context';
 
 import { AppNavigator } from './src/infrastructure/navigation/app.navigator';
 
@@ -30,11 +32,13 @@ const App = () => {
     <>
     {/* Now every styled component will get theme in his props */}
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantProvider>
-            <AppNavigator />
-          </RestaurantProvider>
-        </LocationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantProvider>
+              <AppNavigator />
+            </RestaurantProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>

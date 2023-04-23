@@ -2,6 +2,9 @@ import React from "react";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 
+// favourite icon component
+import FavouriteIcon from "../../../components/favourites/favourite-icon.component";
+
 // text helper component
 import { Text } from "../../../components/text/text.component";
 
@@ -37,6 +40,7 @@ export const RestaurantInfoCard = ({ restaurant = {}, photoUrl }) => {
 
   return (
     <RestaurantCard>
+      <FavouriteIcon restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
