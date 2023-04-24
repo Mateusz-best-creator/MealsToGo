@@ -26,36 +26,34 @@ function SettingsScreen() {
 
 export const AppNavigator = () => {
     return (
-        <>
-            <NavigationContainer>
-                <Tab.Navigator screenOptions={({ route }) => ({
-                    tabBarIcon: ({ focused, color }) => {
-                        
-                        const { name } = route;
-                        
-                        switch(name) {
-                        case 'Restaurants':
-                            focused ? color = 'tomato' : color = 'black';
-                            return <Ionicons name="restaurant-outline" size={24} color={color} />
-                        case 'Map':
-                            return <Feather name="map" size={24} color={color} />
-                        case 'Settings':
-                            return <Feather name="settings" size={24} color={color} />
-                        default:
-                            return;
-                        }
-                    },
-                    tabBarActiveTintColor: 'tomato',
-                    tabBarInactiveTintColor: 'gray',
-                    headerShown: false,
-                    })}
-                >
-                                
-                    <Tab.Screen  name="Restaurants" component={RestaurantsNavigator} />
-                    <Tab.Screen name="Map" component={MapScreen} />
-                    <Tab.Screen name="Settings" component={SettingsScreen} />
-                </Tab.Navigator>
-            </NavigationContainer>
-        </>
+        <NavigationContainer>
+            <Tab.Navigator screenOptions={({ route }) => ({
+                tabBarIcon: ({ focused, color }) => {
+                    
+                    const { name } = route;
+                    
+                    switch(name) {
+                    case 'Restaurants':
+                        focused ? color = 'tomato' : color = 'black';
+                        return <Ionicons name="restaurant-outline" size={24} color={color} />
+                    case 'Map':
+                        return <Feather name="map" size={24} color={color} />
+                    case 'Settings':
+                        return <Feather name="settings" size={24} color={color} />
+                    default:
+                        return;
+                    }
+                },
+                tabBarActiveTintColor: 'tomato',
+                tabBarInactiveTintColor: 'gray',
+                headerShown: false,
+                })}
+            >
+                            
+                <Tab.Screen  name="Restaurants" component={RestaurantsNavigator} />
+                <Tab.Screen name="Map" component={MapScreen} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+            </Tab.Navigator>
+        </NavigationContainer>
     )
 }

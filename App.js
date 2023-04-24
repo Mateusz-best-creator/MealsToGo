@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
 import { ThemeProvider } from 'styled-components';
@@ -14,8 +14,10 @@ import { RestaurantProvider } from './src/services/restaurants/restaurants.conte
 import { LocationContextProvider } from './src/services/location/location.context';
 // favourites context
 import { FavouritesContextProvider } from './src/services/favourites/favourites.context';
+// authentication context
+import { AuthenticationContextProvider } from './src/services/authentication/authentication.context';
 
-import { AppNavigator } from './src/infrastructure/navigation/app.navigator';
+import Navigation from './src/infrastructure/navigation';
 
 const App = () => {
 
@@ -32,13 +34,15 @@ const App = () => {
     <>
     {/* Now every styled component will get theme in his props */}
       <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantProvider>
-              <AppNavigator />
-            </RestaurantProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <FavouritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantProvider>
+                <Navigation />
+              </RestaurantProvider>
+            </LocationContextProvider>
+          </FavouritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
