@@ -12,6 +12,8 @@ import { AuthButton } from "../components/account.styles";
 
 // utils from auth context
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+// loader component
+import Loader from "../../../components/activityIndicator/activity-indicator.component";
 
 export const LoginContainer = styled.View`
   background-color: rgba(255,255,255,0.7);
@@ -35,7 +37,7 @@ export const AuthErrorContainer = styled.View`
 
 const RegisterScreen = ({ navigation }) => {
 
-    const {onRegister, error} = useContext(AuthenticationContext);
+    const {onRegister, error, isLoading} = useContext(AuthenticationContext);
     const [errorMessage, setErrorMessage] = useState(error);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -96,9 +98,14 @@ const RegisterScreen = ({ navigation }) => {
                 />
                 <Spacer size="large" />
                 <Spacer size="large" />
-                <SignButton icon="account-cowboy-hat-outline" onPress={handleLoginSubmit}>
-                    Register
-                </SignButton>
+                {
+                    isLoading ? <Loader />
+                    : (
+                        <SignButton icon="account-cowboy-hat-outline" onPress={handleLoginSubmit}>
+                            Register
+                        </SignButton>
+                    )
+                }
                 {
                     error && <AuthErrorContainer>
                         <Text variant="error">{errorMessage}</Text>

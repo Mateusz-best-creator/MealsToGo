@@ -12,6 +12,8 @@ import { AuthButton } from "../components/account.styles";
 
 // utils from auth context
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+// loader component
+import Loader from "../../../components/activityIndicator/activity-indicator.component";
 
 export const LoginContainer = styled.View`
   background-color: rgba(255,255,255,0.7);
@@ -35,7 +37,7 @@ export const AuthErrorContainer = styled.View`
 
 const LoginScreen = ({ navigation }) => {
 
-    const {onLogin, error} = useContext(AuthenticationContext);
+    const {onLogin, error, isLoading} = useContext(AuthenticationContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     
@@ -78,9 +80,14 @@ const LoginScreen = ({ navigation }) => {
                 />
                 <Spacer size="large" />
                 <Spacer size="large" />
-                <SignButton icon="account-lock-open-outline" onPress={handleLoginSubmit}>
-                    Login
-                </SignButton>
+                {
+                    isLoading ? <Loader />
+                    : (
+                        <SignButton icon="account-lock-open-outline" onPress={handleLoginSubmit}>
+                            Login
+                        </SignButton>
+                    )
+                }
                 {
                     error && <AuthErrorContainer>
                         <Text variant="error">{error}</Text>

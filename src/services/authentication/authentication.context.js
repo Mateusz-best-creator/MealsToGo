@@ -37,8 +37,9 @@ export const AuthenticationContextProvider = ({ children }) => {
     const onRegister = async(email, password) => {
         try{
             setIsLoading(true);
-            const data = await createAuthUserWithEmailAndPassoword(email, password);
-            console.log("data", data);
+            const {user} = await createAuthUserWithEmailAndPassoword(email, password);
+            console.log("data", user);
+            setAppUser(user);
             setIsLoading(false);
         }catch(error) {
             setError(error.toString());
