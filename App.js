@@ -7,13 +7,6 @@ import {theme} from './src/infrastructure/theme/index';
 
 import {useFonts as useOswald, Oswald_400Regular,} from '@expo-google-fonts/oswald';
 import {useFonts as useLato, Lato_400Regular,} from '@expo-google-fonts/lato';
-
-// restaurants context
-import { RestaurantProvider } from './src/services/restaurants/restaurants.context';
-// location context
-import { LocationContextProvider } from './src/services/location/location.context';
-// favourites context
-import { FavouritesContextProvider } from './src/services/favourites/favourites.context';
 // authentication context
 import { AuthenticationContextProvider } from './src/services/authentication/authentication.context';
 
@@ -35,13 +28,7 @@ const App = () => {
     {/* Now every styled component will get theme in his props */}
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider>
-          <FavouritesContextProvider>
-            <LocationContextProvider>
-              <RestaurantProvider>
-                <Navigation />
-              </RestaurantProvider>
-            </LocationContextProvider>
-          </FavouritesContextProvider>
+          <Navigation />
         </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
