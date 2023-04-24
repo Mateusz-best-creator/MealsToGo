@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "../../../components/text/text.component";
 
 import { 
     AccountBackground, 
@@ -14,6 +15,7 @@ const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
+      <Text style={{fontSize: 30}}>Meals To Go</Text>
       <AccountContainer>
         <AuthButton icon="account-lock-open-outline" onPress={() => navigation.navigate("Login")}>
             Login

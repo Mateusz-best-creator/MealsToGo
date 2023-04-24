@@ -29,3 +29,11 @@ export const AuthButton = styled(Button).attrs({
 })`
   padding: ${props => props.theme.space[2]}
 `;
+
+export const SignButton = styled(Button).attrs({
+  buttonColor: colors.brand.primary,
+  textColor: colors.text.inverse,
+})`
+  padding: ${props => props.theme.space[2]};
+  width: 100%;
+`;

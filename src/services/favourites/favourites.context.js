@@ -35,8 +35,8 @@ export const FavouritesContextProvider = ({ children }) => {
           const jsonValue = await AsyncStorage.getItem('@favourite_restaurants')
           const data =  jsonValue !== null ? JSON.parse(jsonValue) : null;
           setFavourites(data);
-        } catch(e) {
-            console.log("ERROR loading ", e);
+        } catch(error) {
+            console.log("ERROR loading ", error);
         }
     }
 
