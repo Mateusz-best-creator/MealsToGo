@@ -1,7 +1,13 @@
-import React, {useState, createContext} from "react";
+import React, {useState, createContext, useEffect} from "react";
 
-import { signInUser } from "../firebaseUtils/firebase";
-import { createAuthUserWithEmailAndPassoword } from "../firebaseUtils/firebase";
+// firebase helper methods
+import { 
+    createAuthUserWithEmailAndPassoword,
+    onAuthStateChangedListener,
+    signInUser,
+    createUserDocumentFromAuth,
+    signOutUser,
+ } from "../firebaseUtils/firebase";
 
 export const AuthenticationContext = createContext({
     isLoading: false,
@@ -10,8 +16,6 @@ export const AuthenticationContext = createContext({
     setIsLoading: () => null,
     error: null,
     setError: () => null,
-    isAuthenticated: false,
-    setIsAuthenticated: () => null,
 });
 
 export const AuthenticationContextProvider = ({ children }) => {
@@ -19,12 +23,22 @@ export const AuthenticationContextProvider = ({ children }) => {
     const [appUser, setAppUser] = useState(null);
     const [error, setError] = useState(null);
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChangedListener((user) => {
+          if (user) {
+            createUserDocumentFromAuth(user);
+          }
+          setAppUser(user);
+        })
+    
+        return unsubscribe;
+      }, [])
+
     const onLogin = async (email, password) => {
         try {
             setIsLoading(true);
             const {user} = await signInUser(email, password);
             setAppUser(user);
-            setIsLoading(false);
             // console.log("USER", user);
         } catch(error) {
             console.log("ERRRR", error);
@@ -32,21 +46,25 @@ export const AuthenticationContextProvider = ({ children }) => {
             // we want to make it interact as an array so we use toString method!!!
             setError(error.toString());
         }
+        setIsLoading(false);
     }
 
     const onRegister = async(email, password) => {
         try{
             setIsLoading(true);
             const {user} = await createAuthUserWithEmailAndPassoword(email, password);
-            console.log("data", user);
             setAppUser(user);
-            setIsLoading(false);
         }catch(error) {
             setError(error.toString());
         }
+        setIsLoading(false);
     }
 
-    value = {appUser, isLoading, error, onLogin, onRegister, isAuthenticated: !!appUser};
+    const onSignOut = async() => {
+        await signOutUser()
+    }
+
+    value = {appUser, isLoading, error, onLogin, onRegister, onSignOut, isAuthenticated: !!appUser};
 
     return <AuthenticationContext.Provider value={value}>{children}</AuthenticationContext.Provider>
 }
