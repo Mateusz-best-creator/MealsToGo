@@ -18,7 +18,7 @@ import {
   Icon,
 } from './restaurant-info.card.styled';
 
-export const RestaurantInfoCard = ({ restaurant = {}, photoUrl }) => {
+export const RestaurantInfoCard = ({ restaurant = {}, photoUrl = ''}) => {
   
   const {
     name = "Some Restaurant",

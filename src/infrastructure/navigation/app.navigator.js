@@ -1,5 +1,4 @@
-import React, {useContext} from "react";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import React from "react";
 
 // expo icons
 import { Ionicons } from '@expo/vector-icons';
@@ -12,9 +11,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // restaurants separate navigator
 import { RestaurantsNavigator } from "./restaurants.navigator";
 
-// map and settings screens
+// map screen
 import MapScreen from "../../features/map/screens/map-screen.screen";
-import SettingsScreen from "../../features/settings/screen/settings.screen";
+// settings navigator
+import SettingsNavigator from "./settings.navigator";
 // restaurants context
 import { RestaurantProvider } from "../../services/restaurants/restaurants.context";
 // location context
@@ -55,7 +55,7 @@ export const AppNavigator = () => {
                                     
                         <Tab.Screen  name="Restaurants" component={RestaurantsNavigator} />
                         <Tab.Screen name="Map" component={MapScreen} />
-                        <Tab.Screen name="Settings" component={SettingsScreen} />
+                        <Tab.Screen name="Settings" component={SettingsNavigator} />
                     </Tab.Navigator>
                 </RestaurantProvider>
             </LocationContextProvider>
