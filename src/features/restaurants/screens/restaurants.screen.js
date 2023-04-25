@@ -20,6 +20,9 @@ import Loader from "../../../components/activityIndicator/activity-indicator.com
 // search component
 import Search from "../components/search.component";
 
+// fade animation
+import FadeInView from "../../../components/animations/fade.animations";
+
 const RestaurantsScreen = ({ navigation }) => {
 
     const { restaurantsData, isLoading } = useContext(RestaurantsContext);
@@ -38,20 +41,22 @@ const RestaurantsScreen = ({ navigation }) => {
             {
                 !isLoading
                 ? (
-                    <FlatList 
-                        data={restaurantsData}
-                        renderItem={({item}) => {
-                            return (
-                                // .navigate is a prop from navigation
-                                <TouchableOpacity  onPress={() => navigation.navigate("RestaurantDetail", {restaurantData: item, photoUrl: item.photos[0]})}>
-                                    <RestaurantInfoCard restaurant={item} />
-                                </TouchableOpacity >   
-                            )
-                        }}
-                        keyExtractor={item => item.name}
-                        // these styled will apply to the holistic content inside the container.  / holistic => całościowy
-                        contentContainerStyle={{padding: 8}}
-                    />
+                        <FlatList 
+                            data={restaurantsData}
+                            renderItem={({item}) => {
+                                return (
+                                    // .navigate is a prop from navigation
+                                    <TouchableOpacity  onPress={() => navigation.navigate("RestaurantDetail", {restaurantData: item, photoUrl: item.photos[0]})}>
+                                        <FadeInView>
+                                            <RestaurantInfoCard restaurant={item} />
+                                        </FadeInView>
+                                    </TouchableOpacity >   
+                                )
+                            }}
+                            keyExtractor={item => item.name}
+                            // these styled will apply to the holistic content inside the container.  / holistic => całościowy
+                            contentContainerStyle={{padding: 8}}
+                        />
                 )
                 : <LoaderContainer>
                     <Loader />
