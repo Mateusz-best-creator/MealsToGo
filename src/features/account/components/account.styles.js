@@ -27,7 +27,7 @@ export const AuthButton = styled(Button).attrs({
   buttonColor: colors.brand.primary,
   textColor: colors.text.inverse,
 })`
-  padding: ${props => props.theme.space[2]}
+  padding: ${props => props.theme.space[2]};
 `;
 
 export const SignButton = styled(Button).attrs({
@@ -37,3 +37,11 @@ export const SignButton = styled(Button).attrs({
   padding: ${props => props.theme.space[2]};
   width: 100%;
 `;
+
+export const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 40px;
+  padding: ${props => props.theme.space[2]};
+`

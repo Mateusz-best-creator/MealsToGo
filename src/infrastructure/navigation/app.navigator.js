@@ -1,8 +1,5 @@
 import React, {useContext} from "react";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-import {Text} from 'react-native';
-import { Button } from "react-native-paper";
-import { SafeArea } from "../../features/restaurants/screens/restaurants-screen.styles";
 
 // expo icons
 import { Ionicons } from '@expo/vector-icons';
@@ -17,6 +14,7 @@ import { RestaurantsNavigator } from "./restaurants.navigator";
 
 // map and settings screens
 import MapScreen from "../../features/map/screens/map-screen.screen";
+import SettingsScreen from "../../features/settings/screen/settings.screen";
 // restaurants context
 import { RestaurantProvider } from "../../services/restaurants/restaurants.context";
 // location context
@@ -25,16 +23,6 @@ import { LocationContextProvider } from "../../services/location/location.contex
 import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
 
 const Tab = createBottomTabNavigator();
-
-function SettingsScreen() {
-    const {onSignOut} = useContext(AuthenticationContext);
-    return <SafeArea>
-    <Button onPress={() => onSignOut()}>
-        Log Out
-    </Button>
-      <Text>Settings!!!!</Text>
-    </SafeArea>
-  }
 
 export const AppNavigator = () => {
     return (
