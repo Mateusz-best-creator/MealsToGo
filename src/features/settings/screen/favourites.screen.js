@@ -27,7 +27,6 @@ const TitleContainer = styled.View`
 export const FavouritesScreen = ({ navigation }) => {
 
     const {favourites} = useContext(FavouritesContext);
-    console.log("FAV", navigation)
     return (
         <SafeArea>
         <Spacer size='large' />

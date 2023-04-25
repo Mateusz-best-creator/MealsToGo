@@ -11,7 +11,7 @@ import FavouritesScreen from "../../features/settings/screen/favourites.screen";
 const Stack = createStackNavigator();
 
 const SettingsNavigator = ({ navigation, route }) => {
-    console.log("PROPS", navigation, route)
+
   return (
     <Stack.Navigator screenOptions={{
         headerShown: false,

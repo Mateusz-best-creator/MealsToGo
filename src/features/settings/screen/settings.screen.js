@@ -44,7 +44,6 @@ const SettingsBackground = styled.ImageBackground.attrs({
 
 const SettingsScreen = ({ navigation }) => {
     const {onSignOut, appUser} = useContext(AuthenticationContext);
-    console.log("nav", appUser);
     return (
       <SafeArea>
         <SettingsBackground>

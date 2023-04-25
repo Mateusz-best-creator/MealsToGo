@@ -39,7 +39,6 @@ export const AuthenticationContextProvider = ({ children }) => {
             setIsLoading(true);
             const {user} = await signInUser(email, password);
             setAppUser(user);
-            // console.log("USER", user);
         } catch(error) {
             console.log("ERRRR", error);
             // when we work with firebase and we have an error
