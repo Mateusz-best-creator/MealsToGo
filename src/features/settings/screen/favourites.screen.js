@@ -35,6 +35,15 @@ export const FavouritesScreen = ({ navigation }) => {
                 <Text style={{fontSize: 16}} variant='caption'>Your Favourites Restaurants:</Text>
             </TitleContainer>
             <Spacer size='large' />
+            {
+                !favourites.length
+                ? (
+                    <TitleContainer>
+                        <Spacer size='large' />
+                        <Text style={{fontSize: 16}} variant='caption'>Your Card is empty</Text>
+                    </TitleContainer>
+                ) : null
+            }
             <FlatList
                 data={favourites}
                 renderItem={({item, index}) => {

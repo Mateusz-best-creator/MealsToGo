@@ -37,12 +37,11 @@ export const AuthErrorContainer = styled.View`
 
 const RegisterScreen = ({ navigation }) => {
 
-    const {onRegister, error, isLoading} = useContext(AuthenticationContext);
-    const [errorMessage, setErrorMessage] = useState(error);
+    const {onRegister, error, isLoading, appUser} = useContext(AuthenticationContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatedPassword, setRepeatedPassword] = useState('');
-    
+    console.log("USER", appUser)
     const handleInputs = (type, text) => {
         switch(type) {
             case 'email':
@@ -60,11 +59,7 @@ const RegisterScreen = ({ navigation }) => {
     }
 
     const handleLoginSubmit = () => {
-        if (password !== repeatedPassword) {
-            setErrorMessage('Passowords do not match.');
-            return;
-        }
-        onRegister(email, password);
+        onRegister(email, password, repeatedPassword);
     }
 
     return (
@@ -108,7 +103,7 @@ const RegisterScreen = ({ navigation }) => {
                 }
                 {
                     error && <AuthErrorContainer>
-                        <Text variant="error">{errorMessage}</Text>
+                        <Text variant="error">{error}</Text>
                     </AuthErrorContainer>
                 }
             </LoginContainer>

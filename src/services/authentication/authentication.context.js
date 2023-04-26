@@ -48,9 +48,14 @@ export const AuthenticationContextProvider = ({ children }) => {
         setIsLoading(false);
     }
 
-    const onRegister = async(email, password) => {
+    const onRegister = async(email, password, repeatedPassword) => {
         try{
             setIsLoading(true);
+            if(password !== repeatedPassword) {
+                setError('Passwords do not match');
+                setIsLoading(false);
+                return;
+            }
             const {user} = await createAuthUserWithEmailAndPassoword(email, password);
             setAppUser(user);
         }catch(error) {
