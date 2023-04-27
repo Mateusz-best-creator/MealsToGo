@@ -1,11 +1,14 @@
-import React, {useContext} from "react";
-import { ImageBackground } from "react-native";
+import React, {useContext, useEffect, useState} from "react";
+import { TouchableOpacity, Image } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/text/text.component";
 import styled from "styled-components/native";
 import { List, Avatar  } from "react-native-paper";
 import { SafeArea } from "../../restaurants/screens/restaurants-screen.styles";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
+
+// get user photo from asyncStorage
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SettingsItem = styled(List.Item)`
   padding: ${props => props.theme.space[3]};
@@ -30,10 +33,15 @@ const SettingsIconContainer = styled.View`
 `
 
 const SettingsIcon = styled(Avatar.Icon).attrs({
-    icon: 'apps',
-    size: 140,
+  icon: 'apps',
+  size: 140,
 })`
   background-color: #2182BD;
+`
+
+const UserPhotoImage = styled.Image`
+  width: 170px;
+  height: 170px;
 `
 
 const SettingsBackground = styled.ImageBackground.attrs({
@@ -43,38 +51,61 @@ const SettingsBackground = styled.ImageBackground.attrs({
 `;
 
 const SettingsScreen = ({ navigation }) => {
-    const {onSignOut, appUser} = useContext(AuthenticationContext);
-    return (
-      <SafeArea>
-        <SettingsBackground>
-          <Spacer size='large' />
+
+  const [userPhoto, setUserPhoto] = useState(null)
+  const {onSignOut, appUser} = useContext(AuthenticationContext);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const photoUserUrl = await AsyncStorage.getItem(`${appUser.uid}-photo`);
+        if(photoUserUrl !== null) {
+          setUserPhoto(photoUserUrl);
+        }
+      } catch(error) {
+        console.log("Problems with getting user photo.", error)
+      }
+    }
+    getData();
+  }, [appUser, userPhoto])
+
+  return (
+    <SafeArea>
+      <SettingsBackground>
+        <Spacer size='large' />
+        <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
           <SettingsIconContainer>
-            <SettingsIcon/>
+            {
+                !userPhoto
+                ? <SettingsIcon/>
+                : <UserPhotoImage source={{uri: userPhoto}} />
+            }
           </SettingsIconContainer>
+        </TouchableOpacity>
+        <Spacer size='large' />
+        <Spacer size='large' />
+          <EmailContainer>
+            <Text style={{fontSize: 20}} variant='caption'>{appUser.email}</Text>
+          </EmailContainer>
+        <Spacer size='large' />
+        <Spacer size='large' />
+        <List.Section>
+          <SettingsItem 
+            title="Favourites" 
+            left={() => <List.Icon icon="star" />} 
+            onPress={() => navigation.navigate("Favourites")} 
+            description="View your favourites"
+          />
           <Spacer size='large' />
-          <Spacer size='large' />
-            <EmailContainer>
-              <Text style={{fontSize: 20}} variant='caption'>{appUser.email}</Text>
-            </EmailContainer>
-          <Spacer size='large' />
-          <Spacer size='large' />
-          <List.Section>
-            <SettingsItem 
-              title="Favourites" 
-              left={() => <List.Icon icon="star" />} 
-              onPress={() => navigation.navigate("Favourites")} 
-              description="View your favourites"
-            />
-            <Spacer size='large' />
-            <SettingsItem 
-              title="Logout" 
-              left={() => <List.Icon icon="door" />} 
-              onPress={() => onSignOut()} 
-            />
-          </List.Section>
-        </SettingsBackground>
-      </SafeArea>
-    )
+          <SettingsItem 
+            title="Logout" 
+            left={() => <List.Icon icon="door" />} 
+            onPress={() => onSignOut()} 
+          />
+        </List.Section>
+      </SettingsBackground>
+    </SafeArea>
+  )
 }
 
 export default SettingsScreen;
