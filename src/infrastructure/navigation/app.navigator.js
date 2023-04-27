@@ -10,6 +10,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // restaurants separate navigator
 import { RestaurantsNavigator } from "./restaurants.navigator";
+// payment navigator
+import PaymentNavigator from "./payment.navigator";
 
 // map screen
 import MapScreen from "../../features/map/screens/map-screen.screen";
@@ -37,9 +39,11 @@ export const AppNavigator = () => {
                             const { name } = route;
                             
                             switch(name) {
-                            case 'Restaurants':
+                            case 'Restaurants':  
                                 focused ? color = 'tomato' : color = 'black';
                                 return <Ionicons name="restaurant-outline" size={24} color={color} />
+                            case 'Payment':
+                                return <Feather name="truck" size={24} color={color} />
                             case 'Map':
                                 return <Feather name="map" size={24} color={color} />
                             case 'Settings':
@@ -55,6 +59,7 @@ export const AppNavigator = () => {
                     >
                                     
                         <Tab.Screen  name="Restaurants" component={RestaurantsNavigator} />
+                        <Tab.Screen  name="Payment" component={PaymentNavigator} />
                         <Tab.Screen name="Map" component={MapScreen} />
                         <Tab.Screen name="Settings" component={SettingsNavigator} />
                     </Tab.Navigator>

@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import styled from "styled-components/native";
+import {Button} from "react-native-paper";
+import { Text } from "../../../components/text/text.component";
 // restaurant info component
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
@@ -9,7 +12,18 @@ import { List } from "react-native-paper";
 
 import { SafeArea } from "./restaurants-screen.styles";
 
-export const RestaurantDetailsScreen = ({ route: {params} }) => {
+import { Spacer } from "../../../components/spacer/spacer.component";
+
+// const OrderSpecialButton = styled.
+
+export const PayButton = styled(Button)`
+    width: 80%;
+    margin: 0 auto;
+    background-color: #2182BD;
+    padding: ${props => props.theme.space[2]};
+`
+
+export const RestaurantDetailsScreen = ({ route: {params}, navigation }) => {
 
     const {photoUrl, restaurantData} = params;
     const [expandedBreakfast, setExpandedBreakfast] = useState(false);
@@ -65,6 +79,10 @@ export const RestaurantDetailsScreen = ({ route: {params} }) => {
                     </List.Accordion>
                 </List.Section>
             </ScrollView>
+            <PayButton onPress={() => navigation.navigate("Payment")}>
+                <Text style={{color: 'white'}}>Order Special only $19.99</Text>   
+            </PayButton>
+            <Spacer size='medium' />
         </ SafeArea>
     )
 }

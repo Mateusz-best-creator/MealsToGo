@@ -10,7 +10,7 @@ import { SafeArea } from "../../restaurants/screens/restaurants-screen.styles";
 import { RestaurantInfoCard } from "../../restaurants/components/restaurant-info-card.component";
 
 // go back button
-const GoBackButton = styled(Button)`
+export const GoBackButton = styled(Button)`
     width: 50%;
     margin: 0 auto;
     background-color: #2182BD;
