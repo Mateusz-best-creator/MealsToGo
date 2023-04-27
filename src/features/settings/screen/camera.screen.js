@@ -22,13 +22,14 @@ const ProfileCamera = styled(Camera)`
     height: 100%;
 `
 
-const InnerSnap = styled.View`
+const InnerSnap = styled(View)`
   width: 100%;
   height: 100%;
   z-index: 999;
 `;
 
-const CameraScreen = () => {
+const CameraScreen = ({ navigation }) => {
+    // this entire component was build based on documentaion  https://docs.expo.dev/versions/latest/sdk/camera/
     const { appUser } = useContext(AuthenticationContext);
     const CameraRef = useRef();
     const [permission, setHasPermission] = Camera.useCameraPermissions();
@@ -37,12 +38,13 @@ const CameraScreen = () => {
         if (CameraRef) {
             const photo = await CameraRef.current.takePictureAsync();
             await AsyncStorage.setItem(`${appUser.uid}-photo`, photo.uri)
+            navigation.goBack();
         }
     };
 
     useEffect(() => {
         const askForCameraPermission = async() => {
-            const { status } = await Camera.requestMicrophonePermissionsAsync();
+            const { status } = await Camera.requestCameraPermissionsAsync();
             setHasPermission(status === "granted");
         }
         askForCameraPermission();

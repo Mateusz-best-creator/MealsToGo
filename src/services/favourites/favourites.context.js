@@ -24,7 +24,7 @@ export const FavouritesContextProvider = ({ children }) => {
         if (!filteredFavourites) return;
         setFavourites(filteredFavourites);
     }
-
+    // saving and loading data for each user using AsyncStorage was build based on documentaion https://react-native-async-storage.github.io/async-storage/docs/install/
     const saveFavourites = async (value) => {
         try {
           const jsonValue = JSON.stringify(value)

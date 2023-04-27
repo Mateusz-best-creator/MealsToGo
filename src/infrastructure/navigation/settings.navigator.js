@@ -15,6 +15,7 @@ const Stack = createStackNavigator();
 const SettingsNavigator = () => {
 
   return (
+    // documentation how to build stack navigation https://reactnavigation.org/docs/tab-based-navigation
     <Stack.Navigator screenOptions={{
         headerShown: false,
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,

@@ -26,6 +26,7 @@ const App = () => {
   return (
     <>
     {/* Now every styled component will get theme in his props */}
+    {/* docs for theme ==>  https://styled-components.com/docs/advanced */}
       <ThemeProvider theme={theme}>
         <AuthenticationContextProvider>
           <Navigation />

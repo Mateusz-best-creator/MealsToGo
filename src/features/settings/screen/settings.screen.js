@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from "react";
-import { TouchableOpacity, Image } from "react-native";
+import React, {useContext, useState} from "react";
+import { TouchableOpacity } from "react-native";
 import { Spacer } from "../../../components/spacer/spacer.component";
 import { Text } from "../../../components/text/text.component";
 import styled from "styled-components/native";
@@ -9,6 +9,7 @@ import { AuthenticationContext } from "../../../services/authentication/authenti
 
 // get user photo from asyncStorage
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect } from "@react-navigation/native";
 
 const SettingsItem = styled(List.Item)`
   padding: ${props => props.theme.space[3]};
@@ -32,6 +33,7 @@ const SettingsIconContainer = styled.View`
   justify-content: center;
 `
 
+// this component based on react paper documentation https://callstack.github.io/react-native-paper/docs/components/Avatar/AvatarIcon/
 const SettingsIcon = styled(Avatar.Icon).attrs({
   icon: 'apps',
   size: 140,
@@ -39,23 +41,22 @@ const SettingsIcon = styled(Avatar.Icon).attrs({
   background-color: #2182BD;
 `
 
-const UserPhotoImage = styled.Image`
-  width: 170px;
-  height: 170px;
-`
+const UserPhotoImage = styled(Avatar.Image).attrs({
+  size: 140,
+})``
 
 const SettingsBackground = styled.ImageBackground.attrs({
   source: require("../../../../assets/home_bg.jpg"),
 })`
   flex: 1;
 `;
-
+// everu component that "works" inside of react navigation has access to navigation (and more) properties
 const SettingsScreen = ({ navigation }) => {
 
   const [userPhoto, setUserPhoto] = useState(null)
   const {onSignOut, appUser} = useContext(AuthenticationContext);
 
-  useEffect(() => {
+  useFocusEffect(() => {
     const getData = async () => {
       try {
         const photoUserUrl = await AsyncStorage.getItem(`${appUser.uid}-photo`);
@@ -67,7 +68,7 @@ const SettingsScreen = ({ navigation }) => {
       }
     }
     getData();
-  }, [appUser, userPhoto])
+  })
 
   return (
     <SafeArea>
@@ -89,6 +90,7 @@ const SettingsScreen = ({ navigation }) => {
           </EmailContainer>
         <Spacer size='large' />
         <Spacer size='large' />
+        {/* list is build based on documentation https://callstack.github.io/react-native-paper/3.0/list-section.html */}
         <List.Section>
           <SettingsItem 
             title="Favourites" 
@@ -109,7 +111,3 @@ const SettingsScreen = ({ navigation }) => {
 }
 
 export default SettingsScreen;
-
-{/* <Button onPress={() => onSignOut()}>
-          Log Out
-      </Button> */}

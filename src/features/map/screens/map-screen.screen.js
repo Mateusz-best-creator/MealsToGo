@@ -28,6 +28,7 @@ const MapScreen = ({ navigation }) => {
   }, [location, viewport])
   
   return (
+    // all these map features was build based on documentation https://github.com/react-native-maps/react-native-maps
     <>
       <Search />
       <Map

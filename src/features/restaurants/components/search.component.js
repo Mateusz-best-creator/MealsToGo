@@ -17,6 +17,7 @@ const Search = ({ isFavouritesToggled, onFavouritesToggle }) => {
     }, [keyword])
 
     return (
+        // search bar was build based on docs https://callstack.github.io/react-native-paper/docs/components/Searchbar/
         <SearchBarContainer>
             <SearchingBar
                 icon={isFavouritesToggled ? "heart" : "heart-outline"}

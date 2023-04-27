@@ -26,6 +26,7 @@ const Tab = createBottomTabNavigator();
 
 export const AppNavigator = () => {
     return (
+        // navigation was build on documentation https://reactnavigation.org/docs/tab-based-navigation
         <NavigationContainer>
         <FavouritesContextProvider>
             <LocationContextProvider>

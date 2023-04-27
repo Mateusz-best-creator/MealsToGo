@@ -21,6 +21,7 @@ export const RestaurantDetailsScreen = ({ route: {params} }) => {
         <SafeArea style={{backgroundColor: 'white'}}>
             <RestaurantInfoCard restaurant={restaurantData} photoUrl={photoUrl} />
             <ScrollView>
+                {/* this feature was build on react navigation documentation https://callstack.github.io/react-native-paper/4.0/list-accordion.html */}
                 <List.Section>
                     <List.Accordion
                         title="Breakfast"
