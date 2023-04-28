@@ -1,1 +1,1 @@
-# MealsToGo App allows you to search restaurants ... I will write desc later :)
+#React Native Restaurant App with Google Maps, Firebase Authentication, and React Navigation
