@@ -4,23 +4,23 @@ This React Native app allows users to search for restaurants in Chicago, Toronto
 
 Features:
 
-Search for restaurants in Chicago, Toronto, San Francisco, and Antwerp
-Save your favorite restaurants
-Order from your favorites with payment processing
-Mock dishes for each restaurant
-Firebase Authentication for user authentication
-Local AsyncStorage for saving favorites
-Take a picture using your camera and set as your profile image
-React Native Camera
+Search for restaurants in Chicago, Toronto, San Francisco, and Antwerp,
+Save your favorite restaurants,
+Order from your favorites with payment processing,
+Mock dishes for each restaurant,
+Firebase Authentication for user authentication,
+Local AsyncStorage for saving favorites,
+Take a picture using your camera and set as your profile image,
+React Native Camera,
 
 Technologies Used:
 
-React Native
-React Navigation
-Google Maps
-Firebase Authentication
-React Native Paper
-Styled Components
+React Native,
+React Navigation,
+Google Maps,
+Firebase Authentication,
+React Native Paper,
+Styled Components,
 
 Usage
 Upon launching the app, users will be prompted to sign in or create an account with Firebase Authentication. Once signed in, users can search for restaurants in Chicago, Toronto, San Francisco, and Antwerp. They can save their favorite restaurants by tapping the heart icon, and view their favorites by navigating to the "Favorites" tab.
