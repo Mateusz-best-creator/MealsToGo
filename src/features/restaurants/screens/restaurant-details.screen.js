@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import styled from "styled-components/native";
 import {Button} from "react-native-paper";
 import { Text } from "../../../components/text/text.component";
@@ -14,7 +14,8 @@ import { SafeArea } from "./restaurants-screen.styles";
 
 import { Spacer } from "../../../components/spacer/spacer.component";
 
-// const OrderSpecialButton = styled.
+// payment context
+import { PaymentContext } from "../../../services/payments/payments.context";
 
 export const PayButton = styled(Button)`
     width: 80%;
@@ -25,11 +26,18 @@ export const PayButton = styled(Button)`
 
 export const RestaurantDetailsScreen = ({ route: {params}, navigation }) => {
 
+    const { productsToBuy, addProducts, addRestaurantData } = useContext(PaymentContext);
     const {photoUrl, restaurantData} = params;
     const [expandedBreakfast, setExpandedBreakfast] = useState(false);
     const [expandedLunch, setExpandedLunch] = useState(false);
     const [expandedDinner, setExpandedDinner] = useState(false);
     const [expandedDrinks, setExpandedDrinks] = useState(false);
+
+    const handleButtonClick = () => {
+        addProducts(productsToBuy, restaurantData);
+        addRestaurantData(restaurantData);
+        navigation.navigate("Payment")
+    }
 
     return (
         <SafeArea style={{backgroundColor: 'white'}}>
@@ -79,8 +87,8 @@ export const RestaurantDetailsScreen = ({ route: {params}, navigation }) => {
                     </List.Accordion>
                 </List.Section>
             </ScrollView>
-            <PayButton onPress={() => navigation.navigate("Payment")}>
-                <Text style={{color: 'white'}}>Order Special only $19.99</Text>   
+            <PayButton onPress={() => handleButtonClick()}>
+                <Text style={{color: 'white'}}>Order Special Only $19.99</Text>   
             </PayButton>
             <Spacer size='medium' />
         </ SafeArea>

@@ -23,6 +23,8 @@ import { RestaurantProvider } from "../../services/restaurants/restaurants.conte
 import { LocationContextProvider } from "../../services/location/location.context";
 // favourites context
 import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
+// Payments Context
+import { PaymentContextProvider } from "../../services/payments/payments.context";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,41 +32,43 @@ export const AppNavigator = () => {
     return (
         // navigation was build on documentation https://reactnavigation.org/docs/tab-based-navigation
         <NavigationContainer>
-        <FavouritesContextProvider>
-            <LocationContextProvider>
-                <RestaurantProvider>
-                    <Tab.Navigator screenOptions={({ route }) => ({
-                        tabBarIcon: ({ focused, color }) => {
-                            
-                            const { name } = route;
-                            
-                            switch(name) {
-                            case 'Restaurants':  
-                                focused ? color = 'tomato' : color = 'black';
-                                return <Ionicons name="restaurant-outline" size={24} color={color} />
-                            case 'Payment':
-                                return <Feather name="truck" size={24} color={color} />
-                            case 'Map':
-                                return <Feather name="map" size={24} color={color} />
-                            case 'Settings':
-                                return <Feather name="settings" size={24} color={color} />
-                            default:
-                                return;
-                            }
-                        },
-                        tabBarActiveTintColor: 'tomato',
-                        tabBarInactiveTintColor: 'gray',
-                        headerShown: false,
-                        })}
-                    >
-                                    
-                        <Tab.Screen  name="Restaurants" component={RestaurantsNavigator} />
-                        <Tab.Screen  name="Payment" component={PaymentNavigator} />
-                        <Tab.Screen name="Map" component={MapScreen} />
-                        <Tab.Screen name="Settings" component={SettingsNavigator} />
-                    </Tab.Navigator>
-                </RestaurantProvider>
-            </LocationContextProvider>
+            <FavouritesContextProvider>
+                <LocationContextProvider>
+                    <RestaurantProvider>
+                        <PaymentContextProvider>
+                        <Tab.Navigator screenOptions={({ route }) => ({
+                            tabBarIcon: ({ focused, color }) => {
+                                
+                                const { name } = route;
+                                
+                                switch(name) {
+                                case 'Restaurants':  
+                                    focused ? color = 'tomato' : color = 'black';
+                                    return <Ionicons name="restaurant-outline" size={24} color={color} />
+                                case 'Payment':
+                                    return <Feather name="truck" size={24} color={color} />
+                                case 'Map':
+                                    return <Feather name="map" size={24} color={color} />
+                                case 'Settings':
+                                    return <Feather name="settings" size={24} color={color} />
+                                default:
+                                    return;
+                                }
+                            },
+                            tabBarActiveTintColor: 'tomato',
+                            tabBarInactiveTintColor: 'gray',
+                            headerShown: false,
+                            })}
+                        >
+                                        
+                            <Tab.Screen  name="Restaurants" component={RestaurantsNavigator} />
+                            <Tab.Screen  name="Payment" component={PaymentNavigator} />
+                            <Tab.Screen name="Map" component={MapScreen} />
+                            <Tab.Screen name="Settings" component={SettingsNavigator} />
+                        </Tab.Navigator>
+                        </PaymentContextProvider>
+                    </RestaurantProvider>
+                </LocationContextProvider>
             </FavouritesContextProvider>
         </NavigationContainer>
     )

@@ -7,7 +7,7 @@ const Stack = createStackNavigator();
 const PaymentNavigator = () => {
     return (
         <Stack.Navigator screenOptions={{headerShown: false}}>
-            <Stack.Screen name="Payment2" component={PaymentScreen} />
+            <Stack.Screen name="Payment" component={PaymentScreen} />
         </Stack.Navigator>
     )
 }
