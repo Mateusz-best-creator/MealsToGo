@@ -1,6 +1,6 @@
 React Native Restaurant App with Google Maps, Firebase Authentication, and React Navigation
 
-This React Native app allows users to search for restaurants in Chicago, Toronto, San Francisco, and Antwerp. It uses Google Maps, React Native Paper, Firebase Authentication, and React Navigation. Users can save their favorite restaurants and order from them, with payment processing integrated into the app. Each user's favorites are saved in local storage. You can also take picture 
+This React Native app allows users to search for restaurants in Chicago, Toronto, San Francisco, and Antwerp. It uses Google Maps, React Native Paper, Firebase Authentication, and React Navigation. Users can save their favorite restaurants and order from them, with payment processing integrated into the app. Each user's favorites are saved in local storage. You can also take picture and set that picture as you profile image.
 
 Features:
 
