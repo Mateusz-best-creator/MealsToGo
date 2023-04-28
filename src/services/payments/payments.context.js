@@ -9,11 +9,10 @@ const addProductsHandler = (currentProducts, newProduct) => {
     }
     currentProducts[name] += 1;
     
-    return currentProducts
+    return {...currentProducts}
 }
 
 const removeProductsHandler = (currentProducts, productName) => {
-    console.log("NAME", productName)
     delete currentProducts[productName];
     return {...currentProducts};
 }
@@ -42,7 +41,11 @@ export const PaymentContextProvider = ({ children }) => {
         setProductsToBuy(modifiedProducts);
     }
 
-    const value = {addProducts, productsToBuy, restaurantSingleData, addRestaurantData, removeProduct};
+    const clearProduct = () => {
+        setProductsToBuy({})
+    }
+
+    const value = {addProducts, productsToBuy, restaurantSingleData, addRestaurantData, removeProduct, clearProduct};
 
     return <PaymentContext.Provider value={value}>{ children }</PaymentContext.Provider>
 }

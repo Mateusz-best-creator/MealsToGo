@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native-paper";
 import PaymentScreen from "../../features/payment/screens/payment.screen";
 import { createStackNavigator } from '@react-navigation/stack';
 

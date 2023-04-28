@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from "react";
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import styled from "styled-components/native";
-import { Avatar } from 'react-native-paper';
+import { Avatar, Button, TextInput  } from 'react-native-paper';
 
 import { PaymentContext } from "../../../services/payments/payments.context";
 // info card
@@ -34,9 +34,17 @@ const OrdersContainer = styled.View`
     padding: ${props => props.theme.space[3]};
 `
 
+const PaymentButton = styled(Button)`
+    width: 70%;
+    background-color: #2182BD;
+    padding: ${props => props.theme.space[2]};
+    margin: 0 auto;
+`
+
+
 const PaymentScreen = () => {
 
-    const {productsToBuy, restaurantSingleData} = useContext(PaymentContext);
+    const {productsToBuy, restaurantSingleData, clearProduct} = useContext(PaymentContext);
     const [payRestaurants, setPayRestaurants] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     useEffect(() => {
@@ -53,6 +61,10 @@ const PaymentScreen = () => {
         setTotalPrice(localPrice * 19.99);
     }, [productsToBuy, restaurantSingleData])
 
+    const handleClear = () => {
+        clearProduct();
+    }
+
     return (
         <>
             {
@@ -63,26 +75,40 @@ const PaymentScreen = () => {
                     <Text>Your card is empty.</Text>
                 </EmptyContainer>
                 : (
-                    <SafeArea>
-                        <RestaurantInfoCard restaurant={restaurantSingleData} />
-                        <OrdersContainer>
-                            <Text>Your Orders:</Text>
-                            {
-                                payRestaurants.map((res, index) => {
-                                    console.log("res",res);
-                                    return (
-                                        <>
-                                            <Spacer size="medium" />
-                                            <OrderedRestaurant key={`${index}-${res}`} resturantName={res.name} resturantQuantity={res.quantity} />
-                                        </>
-                                    )
-                                })
-                            }
-                            <Spacer size="large" />
-                            <Text>Total:</Text>
-                            <Text>${totalPrice}</Text>
-                        </OrdersContainer>
-                    </SafeArea>
+                    <ScrollView>
+                        <SafeArea>
+                            <RestaurantInfoCard restaurant={restaurantSingleData} />
+                            
+                                <OrdersContainer>
+                                    <Text>Your Orders:</Text>
+                                    {
+                                        payRestaurants.map((res, index) => {
+                                            return (
+                                                <>
+                                                    <Spacer size="medium" />
+                                                    <OrderedRestaurant key={`${index}-${res}`} resturantName={res.name} resturantQuantity={res.quantity} />
+                                                </>
+                                            )
+                                        })
+                                    }
+                                    <Spacer size="large" />
+                                    <Text>Total:</Text>
+                                    <Text>${totalPrice}</Text>
+                                    <Spacer size="large" />
+                                    <TextInput
+                                        label="Name"
+                                    />
+                                    <Spacer size="medium" />
+                                    <PaymentButton icon="card" mode="contained" onPress={() => console.log('Pressed')}>
+                                        Pay
+                                    </PaymentButton>
+                                    <Spacer size="medium" />
+                                    <PaymentButton onPress={() => handleClear()} style={{backgroundColor: '#dd1111'}} icon="folder" mode="contained">
+                                        Clear Card
+                                    </PaymentButton>
+                                </OrdersContainer>
+                        </SafeArea>
+                    </ScrollView>
                 )
             }
         </>
