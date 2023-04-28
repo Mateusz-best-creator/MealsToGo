@@ -41,7 +41,7 @@ const RegisterScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatedPassword, setRepeatedPassword] = useState('');
-    console.log("USER", appUser)
+
     const handleInputs = (type, text) => {
         switch(type) {
             case 'email':

@@ -100,6 +100,12 @@ const SettingsScreen = ({ navigation }) => {
           />
           <Spacer size='large' />
           <SettingsItem 
+            title="Your orders" 
+            left={() => <List.Icon icon="food" />} 
+            onPress={() => navigation.navigate('Payment')} 
+          />
+          <Spacer size='large' />
+          <SettingsItem 
             title="Logout" 
             left={() => <List.Icon icon="door" />} 
             onPress={() => onSignOut()} 

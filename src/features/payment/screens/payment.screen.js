@@ -74,7 +74,7 @@ const PaymentScreen = () => {
         setSuccesfullPayment('success');
         setTimeout(() => {
             setSuccesfullPayment('');
-            setTextInput('');
+            setTextInput('');;
         }, 2500)
     }
 
