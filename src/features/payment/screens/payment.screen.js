@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from "react";
 import { View, ScrollView } from "react-native";
 import styled from "styled-components/native";
-import { Avatar, Button, TextInput  } from 'react-native-paper';
+import { Avatar, Button, Divider, TextInput  } from 'react-native-paper';
 
 import { PaymentContext } from "../../../services/payments/payments.context";
 // info card
@@ -24,7 +24,7 @@ const EmptyContainer = styled(View)`
 `
 
 const PaymentIcon = styled(Avatar.Icon).attrs({
-    icon: 'folder',
+    icon: 'cart-off',
     size: 140,
   })`
     background-color: #2182BD;
@@ -117,6 +117,7 @@ const PaymentScreen = () => {
                                     <Spacer size="large" />
                                     <Text>Total:</Text>
                                     <Text>${totalPrice}</Text>
+                                    <Divider />
                                     <Spacer size="large" />
                                     <TextInput
                                         label="Name"
@@ -124,11 +125,11 @@ const PaymentScreen = () => {
                                         onChangeText={setTextInput}
                                     />
                                     <Spacer size="medium" />
-                                    <PaymentButton icon="card" mode="contained" onPress={() => handlePayment()}>
+                                    <PaymentButton icon="cash" mode="contained" onPress={() => handlePayment()}>
                                         Pay
                                     </PaymentButton>
                                     <Spacer size="medium" />
-                                    <PaymentButton onPress={() => handleClear()} style={{backgroundColor: '#dd1111'}} icon="folder" mode="contained">
+                                    <PaymentButton onPress={() => handleClear()} style={{backgroundColor: '#FF4347'}} icon="cart-off" mode="contained">
                                         Clear Cart
                                     </PaymentButton>
                                 </OrdersContainer>

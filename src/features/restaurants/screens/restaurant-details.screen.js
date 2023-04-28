@@ -1,6 +1,6 @@
 import React, {useState, useContext} from "react";
 import styled from "styled-components/native";
-import {Button} from "react-native-paper";
+import {Button, Divider} from "react-native-paper";
 import { Text } from "../../../components/text/text.component";
 // restaurant info component
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
@@ -24,6 +24,10 @@ export const PayButton = styled(Button)`
     padding: ${props => props.theme.space[2]};
 `
 
+const ListItem = styled(List.Item)`
+    background-color: white;
+`
+
 export const RestaurantDetailsScreen = ({ route: {params}, navigation }) => {
 
     const { productsToBuy, addProducts, addRestaurantData } = useContext(PaymentContext);
@@ -40,51 +44,65 @@ export const RestaurantDetailsScreen = ({ route: {params}, navigation }) => {
     }
 
     return (
-        <SafeArea style={{backgroundColor: 'white'}}>
+        <SafeArea >
             <RestaurantInfoCard restaurant={restaurantData} photoUrl={photoUrl} />
             <ScrollView>
                 {/* this feature was build on react navigation documentation https://callstack.github.io/react-native-paper/4.0/list-accordion.html */}
                 <List.Section>
                     <List.Accordion
                         title="Breakfast"
-                        left={props => <List.Icon {...props} icon="bread-slice" />}
+                        left={props => <List.Icon {...props} icon="bread-slice"/>}
                         expanded={expandedBreakfast}
                         onPress={() => setExpandedBreakfast(!expandedBreakfast)}>
-                        <List.Item title="Eggs Benedict" />
-                        <List.Item title="Classic Breakfast" />
+                        <ListItem title="Eggs Benedict" />
+                        <Divider />
+                        <ListItem title="Classic Breakfast" />
+                        <Divider />
                     </List.Accordion>
-
+                    <Divider />
                     <List.Accordion
                         title="Lunch"
                         left={props => <List.Icon {...props} icon="hamburger" />}
                         expanded={expandedLunch}
                         onPress={() => setExpandedLunch(!expandedLunch)}>
-                        <List.Item title="Burger w/ Fries" />
-                        <List.Item title="Steak Sandwich" />
-                        <List.Item title="Mushroom Soup" />
+                        <ListItem title="Burger w/ Fries" />
+                        <Divider />
+                        <ListItem title="Steak Sandwich" />
+                        <Divider />
+                        <ListItem title="Mushroom Soup" />
+                        <Divider />
                     </List.Accordion>
-
+                    <Divider />
                     <List.Accordion
                         title="Dinner"
                         left={props => <List.Icon {...props} icon="food-variant" />}
                         expanded={expandedDinner}
                         onPress={() => setExpandedDinner(!expandedDinner)}>
-                        <List.Item title="Spaghetti Bolognese" />
-                        <List.Item title="Veal Cutlet with Chicken Mushroom Rotini" />
-                        <List.Item title="Steak Frites" />
+                        <ListItem title="Spaghetti Bolognese" />
+                        <Divider />
+                        <ListItem title="Veal Cutlet with Chicken Mushroom Rotini" />
+                        <Divider />
+                        <ListItem title="Steak Frites" />
+                        <Divider />
                     </List.Accordion>
-
+                    <Divider />
                     <List.Accordion
                         title="Drinks"
                         left={props => <List.Icon {...props} icon="cup" />}
                         expanded={expandedDrinks}
                         onPress={() => setExpandedDrinks(!expandedDrinks)}>
-                        <List.Item title="Coffee" />
-                        <List.Item title="Tea" />
-                        <List.Item title="Modelo" />
-                        <List.Item title="Coke" />
-                        <List.Item title="Fanta" />
+                        <ListItem title="Coffee" />
+                        <Divider />
+                        <ListItem title="Tea" />
+                        <Divider />
+                        <ListItem title="Modelo" />
+                        <Divider />
+                        <ListItem title="Coke" />
+                        <Divider />
+                        <ListItem title="Fanta" />
+                        <Divider />
                     </List.Accordion>
+                    <Divider />
                 </List.Section>
             </ScrollView>
             <PayButton onPress={() => handleButtonClick()}>

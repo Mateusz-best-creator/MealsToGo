@@ -4,9 +4,11 @@ import { Text } from "../text/text.component";
 import styled from "styled-components/native";
 import { Spacer } from "../spacer/spacer.component";
 import CompactRestaurantInfo from "../restaurant/contact-restaurant-info.component";
+import { Card } from "react-native-paper";
 
-const FavouritesWrapper = styled.View`
+const FavouritesWrapper = styled(Card)`
     padding: 10px;
+    z-index: 999;
 `
 
 const FavouritesBar = ({ favourites, onNavigate }) => {

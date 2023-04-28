@@ -46,7 +46,7 @@ export const AppNavigator = () => {
                                     focused ? color = 'tomato' : color = 'black';
                                     return <Ionicons name="restaurant-outline" size={24} color={color} />
                                 case 'Payment':
-                                    return <Feather name="truck" size={24} color={color} />
+                                    return <Ionicons name="cart" size={24} color={color} />
                                 case 'Map':
                                     return <Feather name="map" size={24} color={color} />
                                 case 'Settings':
