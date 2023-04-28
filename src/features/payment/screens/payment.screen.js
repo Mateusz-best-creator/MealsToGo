@@ -47,6 +47,9 @@ const PaymentScreen = () => {
     const {productsToBuy, restaurantSingleData, clearProduct} = useContext(PaymentContext);
     const [payRestaurants, setPayRestaurants] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [textInput, setTextInput] = useState('');
+    const [succesfullPayment, setSuccesfullPayment] = useState('');
+
     useEffect(() => {
         let localPrice = 0;
         const keysArray = Object.keys(productsToBuy);
@@ -65,14 +68,34 @@ const PaymentScreen = () => {
         clearProduct();
     }
 
+    const handlePayment = () => {
+        if (!textInput) return;
+        clearProduct();
+        setSuccesfullPayment('success');
+        setTimeout(() => {
+            setSuccesfullPayment('');
+            setTextInput('');
+        }, 2500)
+    }
+
     return (
         <>
             {
+                succesfullPayment 
+                ? (
+                    <EmptyContainer>
+                        <PaymentIcon />
+                        <Spacer size="large" />
+                        <Text>Payment Successfull</Text>
+                        <Text>Thanks {textInput}.</Text>
+                    </EmptyContainer>
+                )
+                :
                 Object.keys(productsToBuy).length === 0
                 ? <EmptyContainer>
                     <PaymentIcon />
                     <Spacer size="large" />
-                    <Text>Your card is empty.</Text>
+                    <Text>Your cart is empty.</Text>
                 </EmptyContainer>
                 : (
                     <ScrollView>
@@ -97,14 +120,16 @@ const PaymentScreen = () => {
                                     <Spacer size="large" />
                                     <TextInput
                                         label="Name"
+                                        value={textInput}
+                                        onChangeText={setTextInput}
                                     />
                                     <Spacer size="medium" />
-                                    <PaymentButton icon="card" mode="contained" onPress={() => console.log('Pressed')}>
+                                    <PaymentButton icon="card" mode="contained" onPress={() => handlePayment()}>
                                         Pay
                                     </PaymentButton>
                                     <Spacer size="medium" />
                                     <PaymentButton onPress={() => handleClear()} style={{backgroundColor: '#dd1111'}} icon="folder" mode="contained">
-                                        Clear Card
+                                        Clear Cart
                                     </PaymentButton>
                                 </OrdersContainer>
                         </SafeArea>
