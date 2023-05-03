@@ -49,6 +49,7 @@ const PaymentScreen = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [textInput, setTextInput] = useState('');
     const [succesfullPayment, setSuccesfullPayment] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         let localPrice = 0;
@@ -69,7 +70,11 @@ const PaymentScreen = () => {
     }
 
     const handlePayment = () => {
-        if (!textInput) return;
+        if (!textInput) {
+            setErrorMessage('Pls enter your name.')
+            return;
+        };
+        setErrorMessage('')
         clearProduct();
         setSuccesfullPayment('success');
         setTimeout(() => {
@@ -125,6 +130,11 @@ const PaymentScreen = () => {
                                         onChangeText={setTextInput}
                                     />
                                     <Spacer size="medium" />
+                                    {
+                                        errorMessage
+                                        ? <Text variant='error'>{errorMessage}</Text>
+                                        : null
+                                    }
                                     <PaymentButton icon="cash" mode="contained" onPress={() => handlePayment()}>
                                         Pay
                                     </PaymentButton>
